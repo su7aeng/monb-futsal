@@ -188,6 +188,54 @@
     background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;
   }
   .history-empty{color:var(--text-dim);font-size:13px;text-align:center;padding:16px 0;}
+
+  .badge-expire{
+    display:inline-flex;align-items:center;gap:4px;
+    font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;
+    background:rgba(255,97,97,.12);color:var(--danger);border:1px solid rgba(255,97,97,.35);
+    white-space:nowrap;
+  }
+  .badge-expire::before{content:'●';font-size:7px;}
+  @media (max-width: 640px){
+  .wrap{padding:18px 14px 70px;}
+  header{flex-direction:column;align-items:flex-start;gap:14px;}
+  header h1{font-size:21px;}
+  .card{padding:16px;}
+  .roll-row{flex-wrap:wrap;gap:8px 12px;}
+  .roll-name{width:100%;order:1;font-size:14px;}
+  .roll-meta{order:2;}
+  .roll-remain{order:3;margin-left:auto;}
+  .chk{order:0;}
+  .badge-expire{order:2;}
+
+  table, thead, tbody, tr{display:block;width:100%;}
+  thead{display:none;}
+  tbody tr{
+    border:1px solid var(--border);border-radius:10px;
+    padding:6px 12px;margin-bottom:10px;background:var(--surface-2);
+  }
+  td{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    border-top:1px solid var(--border);padding:10px 0;font-size:13px;
+  }
+  tr td:first-child{border-top:none;}
+  td::before{
+    content:attr(data-label);color:var(--text-dim);font-size:11px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.04em;flex-shrink:0;
+  }
+  td.name-cell{font-size:16px;}
+  td.name-cell::before{content:'';}
+  td[data-label=""]::before{content:'';}
+  .row-actions{justify-content:flex-end;flex:1;}
+  .ring-wrap{justify-content:flex-end;flex:1;}
+  .progress-bar{width:56px;}
+
+  .cal-grid{gap:4px;}
+  .cal-cell{font-size:12px;}
+  .cal-title{min-width:70px;font-size:14px;}
+
+  .modal{max-width:100%;}
+}
 </style>
 </head>
 <body>
@@ -206,7 +254,7 @@
 
   <div class="card">
     <div class="cal-head">
-      <h2 style="margin:0;">경기 일정</h2>
+      <h2 style="margin:0;">수업 일정</h2>
       <div class="cal-nav">
         <button class="icon-btn" id="calPrev">‹</button>
         <span class="cal-title" id="calTitle"></span>
@@ -215,7 +263,7 @@
     </div>
     <div class="cal-grid" id="calDow"></div>
     <div class="cal-grid" id="calGrid" style="margin-top:6px;"></div>
-    <p class="cal-hint">날짜를 클릭하면 경기일로 지정되고, 아래 출석 체크 날짜도 그 날로 바뀌어요</p>
+    <p class="cal-hint">날짜를 클릭하면 수업일로 지정되고, 아래 출석 체크 날짜도 그 날로 바뀌어요</p>
     <div class="attendee-panel">
       <p class="ap-title" id="apTitle">참석자</p>
       <div class="attendee-chips" id="apChips"></div>
@@ -447,6 +495,20 @@ function remainingLabel(m){
   return `${m.total - m.used}/${m.total}`;
 }
 
+function memberStatus(m){
+  const today = todayStr();
+  const periodExpired = !!m.start && m.start < today;
+  const depleted = m.type !== 'monthly' && (m.total - m.used) <= 0;
+  return { periodExpired, depleted, needsRenewal: periodExpired || depleted };
+}
+
+function expireBadge(m){
+  const { periodExpired, depleted } = memberStatus(m);
+  if(!periodExpired && !depleted) return '';
+  const reason = depleted && periodExpired ? '횟수 소진 · 기간 만료' : depleted ? '횟수 소진' : '기간 만료';
+  return `<span class="badge-expire" title="${reason}">갱신 필요</span>`;
+}
+
 let checkedIds = new Set();
 
 function renderRoll(){
@@ -468,6 +530,7 @@ function renderRoll(){
         <div class="chk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#12140a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <span class="roll-name">${m.name}</span>
         <span class="roll-meta">${typeLabel(m)}</span>
+        ${expireBadge(m)}
         <span class="roll-remain ${remainClass}">${remainText}</span>
       </div>`;
   }).join('');
@@ -503,16 +566,21 @@ function renderRosterTable(){
     const low = m.type !== 'monthly' && (m.total - m.used) <= 1;
     return `
       <tr>
-        <td class="name-cell">${m.name}</td>
-        <td><span class="tag">${typeLabel(m)}</span></td>
-        <td>
+        <td class="name-cell" data-label="이름">${m.name}</td>
+        <td data-label="회원권"><span class="tag">${typeLabel(m)}</span></td>
+        <td data-label="잔여">
           <div class="ring-wrap">
             <span>${remainingLabel(m)}</span>
             ${m.type !== 'monthly' ? `<div class="progress-bar"><div class="progress-fill ${low ? 'low' : ''}" style="width:${pct}%"></div></div>` : ''}
           </div>
         </td>
-        <td>${fmtDate(m.start)}</td>
-        <td>
+        <td data-label="사용 기간">
+          <div class="ring-wrap">
+            <span>${fmtDate(m.start)}</span>
+            ${expireBadge(m)}
+          </div>
+        </td>
+        <td data-label="">
           <div class="row-actions">
             <button class="icon-btn" data-action="history" data-id="${m.id}" title="이력">📋</button>
             ${m.type !== 'monthly' ? `<button class="icon-btn" data-action="recharge" data-id="${m.id}" title="충전">＋</button>` : ''}
