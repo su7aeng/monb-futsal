@@ -30,9 +30,9 @@
   h1,h2,h3,.display{font-family:'Sora',sans-serif;}
   .wrap{max-width:920px;margin:0 auto;padding:28px 20px 80px;}
   header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;gap:16px;flex-wrap:wrap;}
-  header .eyebrow{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0 0 6px;}
-  header h1{font-size:26px;font-weight:800;margin:0;letter-spacing:-.01em;}
-  header .sub{color:var(--text-dim);font-size:13px;margin-top:6px;}
+  header .eyebrow{color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0 0 6px;}
+  header h1{font-size:28px;font-weight:800;margin:0;letter-spacing:-.01em;}
+  header .sub{color:var(--text-dim);font-size:14px;margin-top:6px;}
 
   .datebar{
     display:flex;align-items:center;gap:10px;
@@ -40,7 +40,7 @@
     border-radius:999px;padding:6px 8px 6px 16px;
   }
   .datebar input[type=date]{
-    background:transparent;border:none;color:var(--text);font-family:'Inter';font-size:14px;font-weight:600;
+    background:transparent;border:none;color:var(--text);font-family:'Inter';font-size:15px;font-weight:600;
     color-scheme:dark;
   }
   .datebar input[type=date]:focus{outline:none;}
@@ -52,7 +52,7 @@
     padding:20px;
     margin-bottom:20px;
   }
-  .card h2{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin:0 0 16px;}
+  .card h2{font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin:0 0 16px;}
 
   .roll{display:flex;flex-direction:column;gap:8px;}
   .roll-row{
@@ -72,10 +72,10 @@
   .roll-row.checked .chk{background:var(--accent);border-color:var(--accent);}
   .chk svg{width:14px;height:14px;opacity:0;transition:opacity .15s;}
   .roll-row.checked .chk svg{opacity:1;}
-  .roll-name{font-weight:600;font-size:15px;flex:1;}
-  .roll-meta{font-size:12px;color:var(--text-dim);}
+  .roll-name{font-weight:600;font-size:16px;flex:1;}
+  .roll-meta{font-size:13px;color:var(--text-dim);}
   .roll-remain{
-    font-family:'Sora';font-weight:700;font-size:13px;
+    font-family:'Sora';font-weight:700;font-size:14px;
     padding:3px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--border);
   }
   .roll-remain.low{color:var(--danger);border-color:#4a2b2b;}
@@ -84,27 +84,39 @@
 
   .btn{
     background:var(--accent);color:#12140a;border:none;
-    font-family:'Sora';font-weight:700;font-size:14px;
+    font-family:'Sora';font-weight:700;font-size:15px;
     padding:11px 20px;border-radius:999px;cursor:pointer;
     transition:transform .1s, opacity .1s;
   }
   .btn:hover{transform:translateY(-1px);}
   .btn:active{transform:translateY(0);}
   .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text);}
-  .btn.small{padding:7px 14px;font-size:12px;}
+  .btn.small{padding:7px 14px;font-size:13px;}
   .btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
 
   .actions-row{display:flex;justify-content:space-between;align-items:center;margin-top:16px;}
-  .save-hint{font-size:12px;color:var(--text-dim);}
+
+  .attend-select{display:flex;gap:10px;}
+  .attend-select select{
+    flex:1;background:var(--surface-2);border:1px solid var(--border);color:var(--text);
+    padding:12px 14px;border-radius:10px;font-family:'Inter';font-size:16px;font-weight:600;
+    color-scheme:dark;appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%238b9094'%3E%3Cpath d='M5.5 7.5l4.5 4.5 4.5-4.5' stroke='%238b9094' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;
+  }
+  .attend-select select:focus{outline:none;border-color:var(--accent);}
+  .attend-select select option:disabled{color:var(--text-dim);}
+  .attend-select .btn{padding:12px 24px;white-space:nowrap;}
+  .save-hint{font-size:13px;color:var(--text-dim);}
 
   table{width:100%;border-collapse:collapse;}
-  th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim);font-weight:600;padding:0 10px 10px;}
-  td{padding:12px 10px;border-top:1px solid var(--border);font-size:14px;}
+  th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim);font-weight:600;padding:0 10px 10px;}
+  td{padding:12px 10px;border-top:1px solid var(--border);font-size:15px;}
   tr:hover td{background:var(--surface-2);}
   .ring-wrap{display:flex;align-items:center;gap:10px;}
   .name-cell{font-weight:600;}
   .tag{
-    display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;
+    display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;
     background:var(--surface-2);border:1px solid var(--border);color:var(--text-dim);
   }
   .progress-bar{width:70px;height:5px;background:var(--surface-2);border-radius:99px;overflow:hidden;}
@@ -114,11 +126,11 @@
   .icon-btn{
     background:var(--surface-2);border:1px solid var(--border);color:var(--text-dim);
     width:30px;height:30px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;
-    font-size:14px;
+    font-size:15px;
   }
   .icon-btn:hover{color:var(--text);border-color:#4a4f53;}
 
-  .empty{color:var(--text-dim);font-size:13px;text-align:center;padding:20px 0;}
+  .empty{color:var(--text-dim);font-size:14px;text-align:center;padding:20px 0;}
 
   .modal-overlay{
     position:fixed;inset:0;background:rgba(0,0,0,.6);
@@ -130,25 +142,25 @@
     background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
     padding:24px;width:100%;max-width:380px;
   }
-  .modal h3{margin:0 0 18px;font-size:16px;}
+  .modal h3{margin:0 0 18px;font-size:17px;}
   .field{margin-bottom:14px;}
-  .field label{display:block;font-size:12px;color:var(--text-dim);margin-bottom:6px;font-weight:600;}
+  .field label{display:block;font-size:13px;color:var(--text-dim);margin-bottom:6px;font-weight:600;}
   .field input,.field select{
     width:100%;background:var(--surface-2);border:1px solid var(--border);color:var(--text);
-    padding:10px 12px;border-radius:8px;font-family:'Inter';font-size:14px;color-scheme:dark;
+    padding:10px 12px;border-radius:8px;font-family:'Inter';font-size:15px;color-scheme:dark;
   }
   .field input:focus,.field select:focus{outline:none;border-color:var(--accent);}
   .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;}
   .type-toggle{display:flex;gap:6px;}
   .type-toggle button{
     flex:1;padding:9px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);
-    color:var(--text-dim);font-family:'Sora';font-weight:700;font-size:13px;cursor:pointer;
+    color:var(--text-dim);font-family:'Sora';font-weight:700;font-size:14px;cursor:pointer;
   }
   .type-toggle button.active{background:var(--accent);color:#12140a;border-color:var(--accent);}
 
   .toast{
     position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
-    background:var(--accent);color:#12140a;font-family:'Sora';font-weight:700;font-size:13px;
+    background:var(--accent);color:#12140a;font-family:'Sora';font-weight:700;font-size:14px;
     padding:10px 20px;border-radius:999px;opacity:0;transition:all .25s;pointer-events:none;
   }
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
@@ -156,27 +168,32 @@
 
   .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
   .cal-nav{display:flex;align-items:center;gap:10px;}
-  .cal-title{font-family:'Sora';font-weight:700;font-size:15px;min-width:88px;text-align:center;}
+  .cal-title{font-family:'Sora';font-weight:700;font-size:16px;min-width:88px;text-align:center;}
+  .cal-container{max-width:380px;margin:0 auto;}
   .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
-  .cal-dow{text-align:center;font-size:11px;color:var(--text-dim);font-weight:600;padding-bottom:6px;}
+  .cal-dow{text-align:center;font-size:12px;color:var(--text-dim);font-weight:600;padding-bottom:6px;}
   .cal-dow.sun{color:var(--accent);}
   .cal-cell{
     aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
-    position:relative;border-radius:9px;font-size:13px;font-weight:600;
+    position:relative;border-radius:9px;font-size:14px;font-weight:600;
     background:var(--surface-2);border:1px solid transparent;cursor:pointer;color:var(--text);
     transition:border-color .15s;
   }
   .cal-day-num{line-height:1;}
-  .cal-day-label{font-size:9px;font-weight:700;line-height:1;opacity:.85;letter-spacing:-.02em;}
+  .cal-day-label{font-size:10px;font-weight:700;line-height:1;opacity:.85;letter-spacing:-.02em;}
   .cal-cell.empty{background:transparent;cursor:default;}
   .cal-cell.sunday{border:1px dashed #3d4227;}
   .cal-cell.scheduled{background:var(--accent);color:#12140a;border-color:var(--accent);}
-  .cal-cell.friendly{background:transparent;border:2px solid var(--accent);color:var(--accent);}
+  .cal-cell.has-match:not(.scheduled){background:transparent;border:2px solid var(--accent);color:var(--accent);}
+  .cal-cell.has-match.scheduled::after{
+    content:'';position:absolute;top:4px;right:4px;width:7px;height:7px;border-radius:50%;
+    background:#12140a;border:1.5px solid var(--accent);
+  }
   .cal-cell.selected:not(.scheduled):not(.friendly){border-color:var(--accent);}
   .cal-cell:hover:not(.empty){border-color:#4a4f53;}
-  .cal-hint{font-size:12px;color:var(--text-dim);margin-top:12px;text-align:center;}
+  .cal-hint{font-size:13px;color:var(--text-dim);margin-top:12px;text-align:center;}
   .cal-legend{display:flex;gap:14px;justify-content:center;margin-top:10px;flex-wrap:wrap;}
-  .cal-legend span{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim);}
+  .cal-legend span{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-dim);}
   .cal-legend .dot{width:10px;height:10px;border-radius:3px;}
   .cal-legend .dot.class{background:var(--accent);}
   .cal-legend .dot.friendly{background:transparent;border:2px solid var(--accent);}
@@ -184,7 +201,7 @@
   .type-select{display:flex;gap:8px;margin-top:14px;}
   .type-select button{
     flex:1;padding:10px;border-radius:9px;border:1px solid var(--border);background:var(--surface-2);
-    color:var(--text-dim);font-family:'Sora';font-weight:700;font-size:13px;cursor:pointer;
+    color:var(--text-dim);font-family:'Sora';font-weight:700;font-size:14px;cursor:pointer;
     transition:all .15s;
   }
   .type-select button.is-class.active{background:var(--accent);color:#12140a;border-color:var(--accent);}
@@ -197,34 +214,34 @@
   }
   .attendee-panel .ap-title{
     display:flex;align-items:center;gap:8px;
-    font-size:15px;color:var(--text);font-weight:700;font-family:'Sora';margin-bottom:10px;
+    font-size:16px;color:var(--text);font-weight:700;font-family:'Sora';margin-bottom:10px;
   }
   .ap-date{color:var(--text);}
   .ap-type{
-    font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;
+    font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;
   }
   .ap-type.is-class{background:var(--accent);color:#12140a;}
   .ap-type.is-match{background:transparent;color:var(--accent);border:1.5px solid var(--accent);}
   .attendee-chips{display:flex;flex-wrap:wrap;gap:6px;}
   .attendee-chip{
-    font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;
+    font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;
     background:var(--surface);border:1px solid var(--border);
   }
   .attendee-empty{
     display:flex;align-items:center;gap:8px;
-    font-size:13px;color:var(--text-dim);padding:8px 0;
+    font-size:14px;color:var(--text-dim);padding:8px 0;
   }
-  .attendee-empty::before{content:'👀';font-size:14px;}
+  .attendee-empty::before{content:'👀';font-size:15px;}
   .history-list{max-height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;}
   .history-item{
-    display:flex;justify-content:space-between;font-size:13px;
+    display:flex;justify-content:space-between;font-size:14px;
     background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;
   }
-  .history-empty{color:var(--text-dim);font-size:13px;text-align:center;padding:16px 0;}
+  .history-empty{color:var(--text-dim);font-size:14px;text-align:center;padding:16px 0;}
 
   .badge-expire{
     display:inline-flex;align-items:center;gap:4px;
-    font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;
+    font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;
     background:rgba(255,97,97,.12);color:var(--danger);border:1px solid rgba(255,97,97,.35);
     white-space:nowrap;
   }
@@ -233,7 +250,7 @@
   .tabs{display:flex;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:5px;margin-bottom:22px;}
   .tab-btn{
     flex:1;background:transparent;border:none;color:var(--text-dim);
-    font-family:'Sora';font-weight:700;font-size:13px;padding:10px 16px;border-radius:999px;
+    font-family:'Sora';font-weight:700;font-size:14px;padding:10px 16px;border-radius:999px;
     cursor:pointer;transition:all .15s;
   }
   .tab-btn.active{background:var(--accent);color:#12140a;}
@@ -242,10 +259,10 @@
 @media (max-width: 640px){
   .wrap{padding:18px 14px 70px;}
   header{flex-direction:column;align-items:flex-start;gap:14px;}
-  header h1{font-size:21px;}
+  header h1{font-size:22px;}
   .card{padding:16px;}
   .roll-row{flex-wrap:wrap;gap:8px 12px;}
-  .roll-name{width:100%;order:1;font-size:14px;}
+  .roll-name{width:100%;order:1;font-size:15px;}
   .roll-meta{order:2;}
   .roll-remain{order:3;margin-left:auto;}
   .chk{order:0;}
@@ -259,14 +276,14 @@
   }
   td{
     display:flex;align-items:center;justify-content:space-between;gap:12px;
-    border-top:1px solid var(--border);padding:10px 0;font-size:13px;
+    border-top:1px solid var(--border);padding:10px 0;font-size:14px;
   }
   tr td:first-child{border-top:none;}
   td::before{
-    content:attr(data-label);color:var(--text-dim);font-size:11px;font-weight:700;
+    content:attr(data-label);color:var(--text-dim);font-size:12px;font-weight:700;
     text-transform:uppercase;letter-spacing:.04em;flex-shrink:0;
   }
-  td.name-cell{font-size:16px;}
+  td.name-cell{font-size:17px;}
   td.name-cell::before{content:'';}
   td[data-label=""]::before{content:'';}
   .row-actions{justify-content:flex-end;flex:1;}
@@ -274,9 +291,9 @@
   .progress-bar{width:56px;}
 
   .cal-grid{gap:4px;}
-  .cal-cell{font-size:12px;}
+  .cal-cell{font-size:13px;}
   .cal-day-label{font-size:7px;}
-  .cal-title{min-width:70px;font-size:14px;}
+  .cal-title{min-width:70px;font-size:15px;}
 
   .modal{max-width:100%;}
 }
@@ -286,19 +303,31 @@
 <div class="wrap">
   <header>
     <div>
-      <p class="eyebrow">MONBI FUTSAL</p>
-      <h1>몬비 출석 &amp; 회수권 관리</h1>
-      <p class="sub">출석 체크하면 회수권이 자동으로 차감됩니다</p>
+      <p class="eyebrow">MONB FUTSAL</p>
+      <h1>몬비 출석 &amp; 횟수권 관리</h1>
+      <p class="sub">출석 체크하면 횟수권이 자동으로 차감됩니다</p>
     </div>
   </header>
   <input type="date" id="checkDate" style="display:none;">
 
   <div class="tabs">
     <button class="tab-btn active" data-tab="attend">출석체크</button>
+    <button class="tab-btn" data-tab="calendar">출석 캘린더</button>
     <button class="tab-btn" data-tab="roster">팀원 명단</button>
   </div>
 
   <div class="tab-panel active" id="tab-attend">
+    <div class="card">
+      <h2>오늘 출석 체크</h2>
+      <div class="attend-select">
+        <select id="attendeeSelect"></select>
+        <button class="btn" id="checkInBtn">출석</button>
+      </div>
+      <p class="save-hint" id="checkInHint">이름을 고르고 출석을 누르면 그 즉시 오늘 날짜로 기록돼요</p>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-calendar">
     <div class="card">
       <div class="cal-head">
         <h2 style="margin:0;">몬비 캘린더</h2>
@@ -308,30 +337,23 @@
           <button class="icon-btn" id="calNext">›</button>
         </div>
       </div>
-      <div class="cal-grid" id="calDow"></div>
-      <div class="cal-grid" id="calGrid" style="margin-top:6px;"></div>
-      <p class="cal-hint">날짜를 선택하고 아래 버튼으로 수업/경기를 지정하세요. 수업만 회수권이 차감돼요.</p>
+      <div class="cal-container">
+        <div class="cal-grid" id="calDow"></div>
+        <div class="cal-grid" id="calGrid" style="margin-top:6px;"></div>
+      </div>
+      <p class="cal-hint">일요일=수업 자동, 경기는 버튼으로 (동시 가능)</p>
       <div class="cal-legend">
         <span><span class="dot class"></span>수업 (횟수 차감)</span>
-        <span><span class="dot friendly"></span>경기 (차감 없음)</span>
+        <span><span class="dot friendly"></span>경기 (차감 없음, 수업과 동시 가능)</span>
       </div>
       <div class="type-select">
         <button class="is-class" id="setClassBtn" type="button">🟢 수업</button>
         <button class="is-match" id="setMatchBtn" type="button">⚪ 경기</button>
-        <button class="is-clear" id="clearTypeBtn" type="button">일정 해제</button>
+        <button class="is-clear" id="clearTypeBtn" type="button">기본값으로</button>
       </div>
       <div class="attendee-panel">
         <p class="ap-title"><span class="ap-date" id="apDate">참석자</span><span class="ap-type" id="apType"></span></p>
         <div class="attendee-chips" id="apChips"></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>오늘 출석 체크</h2>
-      <div class="roll" id="rollList"></div>
-      <div class="actions-row">
-        <span class="save-hint" id="selCount">0명 선택됨</span>
-        <button class="btn" id="saveAttendance">출석 저장 · 회수권 차감</button>
       </div>
     </div>
   </div>
@@ -341,7 +363,7 @@
       <h2>팀원 명단</h2>
       <table>
         <thead>
-          <tr><th>이름</th><th>회원권</th><th>잔여</th><th>사용 기간</th><th></th></tr>
+          <tr><th>등번호</th><th>이름</th><th>회원권</th><th>잔여</th><th>사용 기간</th><th></th></tr>
         </thead>
         <tbody id="rosterBody"></tbody>
       </table>
@@ -358,6 +380,10 @@
     <div class="field">
       <label>이름</label>
       <input type="text" id="mName" placeholder="예: 최한솔">
+    </div>
+    <div class="field">
+      <label>등번호 (선택)</label>
+      <input type="number" id="mBackno" placeholder="예: 7">
     </div>
     <div class="field">
       <label>회원권 종류</label>
@@ -385,17 +411,62 @@
   <div class="modal">
     <h3 id="historyTitle">참석 이력</h3>
     <div class="history-list" id="historyList"></div>
+    <div class="field" style="margin-top:14px;">
+      <label>날짜 직접 추가/수정</label>
+      <div style="display:flex;gap:8px;">
+        <input type="date" id="historyAddDate" style="flex:1;">
+        <button class="btn small" id="historyAddBtn">추가</button>
+      </div>
+    </div>
     <div class="modal-actions">
       <button class="btn ghost small" id="closeHistory">닫기</button>
     </div>
   </div>
 </div>
 
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <h3 id="editModalTitle">팀원 정보 수정</h3>
+    <div class="field">
+      <label>이름</label>
+      <input type="text" id="editName">
+    </div>
+    <div class="field">
+      <label>등번호 (선택)</label>
+      <input type="number" id="editBackno">
+    </div>
+    <div class="field">
+      <label>회원권 종류</label>
+      <div class="type-toggle" id="editTypeToggle">
+        <button data-type="4" type="button">4회권</button>
+        <button data-type="8" type="button">8회권</button>
+        <button data-type="monthly" type="button">월결제</button>
+      </div>
+    </div>
+    <div class="field" id="editTotalField">
+      <label>총 횟수</label>
+      <input type="number" id="editTotal">
+    </div>
+    <div class="field" id="editUsedField">
+      <label>사용한 횟수 (자동 계산)</label>
+      <p class="cal-hint" id="editUsedDisplay" style="text-align:left;margin:0;padding:10px 12px;background:var(--surface-2);border-radius:8px;"></p>
+    </div>
+    <div class="field">
+      <label>만료일</label>
+      <input type="date" id="editExpiry">
+    </div>
+    <div class="modal-actions">
+      <button class="btn ghost small" id="editCancel">취소</button>
+      <button class="btn small" id="editConfirm">저장</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="rechargeModal">
   <div class="modal">
-    <h3 id="rechargeModalTitle">회수권 충전</h3>
+    <h3 id="rechargeModalTitle">횟수권 충전</h3>
     <div class="field">
-      <label>새 회수권 종류</label>
+      <label>새 횟수권 종류</label>
       <div class="type-toggle" id="rechargeToggle">
         <button data-type="4" type="button">4회권</button>
         <button data-type="8" type="button" class="active">8회권</button>
@@ -498,48 +569,68 @@ let calMonth = new Date();
 calMonth.setDate(1);
 
 async function loadSchedule(){
-  const { data, error } = await sb.from('schedule').select('game_date, event_type');
+  const { data, error } = await sb.from('schedule').select('game_date, is_class, is_match');
   if(error){
     showToast('일정 불러오기 실패: ' + error.message);
     schedule = [];
     return;
   }
-  schedule = data.map(r => ({ date: r.game_date, type: r.event_type || '수업' }));
+  schedule = data.map(r => ({ date: r.game_date, isClass: r.is_class, isMatch: !!r.is_match }));
 }
 
-async function setScheduleType(dateStr, type){
+function isSundayDate(dateStr){
+  return new Date(dateStr + 'T00:00:00').getDay() === 0;
+}
+
+// 명시적으로 지정 안 하면: 일요일=수업 기본, 그 외=수업 아님. 경기는 항상 기본 false.
+function getClassFlag(dateStr){
   const entry = schedule.find(s => s.date === dateStr);
-  if(entry) entry.type = type; else schedule.push({ date: dateStr, type });
+  if(entry && entry.isClass !== null && entry.isClass !== undefined) return entry.isClass;
+  return isSundayDate(dateStr);
+}
+function getMatchFlag(dateStr){
+  const entry = schedule.find(s => s.date === dateStr);
+  return entry ? !!entry.isMatch : false;
+}
+
+async function upsertScheduleFlags(dateStr, partial){
+  const entry = schedule.find(s => s.date === dateStr);
+  const newIsClass = partial.isClass !== undefined ? partial.isClass : (entry ? entry.isClass : null);
+  const newIsMatch = partial.isMatch !== undefined ? partial.isMatch : (entry ? entry.isMatch : false);
+  if(entry){ entry.isClass = newIsClass; entry.isMatch = newIsMatch; }
+  else schedule.push({ date: dateStr, isClass: newIsClass, isMatch: newIsMatch });
   renderCalendar();
-  renderAttendeePanel();
+  render();
   try{
-    if(!entry){
-      const { error } = await sb.from('schedule').insert({ game_date: dateStr, event_type: type });
-      if(error) throw error;
-    }else{
-      const { error } = await sb.from('schedule').update({ event_type: type }).eq('game_date', dateStr);
-      if(error) throw error;
-    }
+    const { error } = await sb.from('schedule').upsert({ game_date: dateStr, is_class: newIsClass, is_match: newIsMatch });
+    if(error) throw error;
     await loadSchedule();
     renderCalendar();
-    renderAttendeePanel();
+    render();
   }catch(e){
     showToast('일정 저장 실패: ' + e.message);
   }
 }
 
-async function clearScheduleType(dateStr){
+async function toggleClassFlag(dateStr){
+  await upsertScheduleFlags(dateStr, { isClass: !getClassFlag(dateStr) });
+}
+async function toggleMatchFlag(dateStr){
+  await upsertScheduleFlags(dateStr, { isMatch: !getMatchFlag(dateStr) });
+}
+
+async function resetScheduleDate(dateStr){
   schedule = schedule.filter(s => s.date !== dateStr);
   renderCalendar();
-  renderAttendeePanel();
+  render();
   try{
     const { error } = await sb.from('schedule').delete().eq('game_date', dateStr);
     if(error) throw error;
     await loadSchedule();
     renderCalendar();
-    renderAttendeePanel();
+    render();
   }catch(e){
-    showToast('일정 해제 실패: ' + e.message);
+    showToast('초기화 실패: ' + e.message);
   }
 }
 
@@ -549,16 +640,12 @@ function selectDate(dateStr){
   renderAttendeePanel();
 }
 
-function getEventType(dateStr){
-  const entry = schedule.find(s => s.date === dateStr);
-  return entry ? entry.type : '수업';
-}
-
 function subscribeScheduleRealtime(){
   sb.channel('schedule-realtime')
     .on('postgres_changes', { event: '*', schema: 'public', table: 'schedule' }, async () => {
       await loadSchedule();
       renderCalendar();
+      render();
     })
     .subscribe();
 }
@@ -586,15 +673,18 @@ function renderCalendar(){
     const dateStr = `${y}-${pad2(m+1)}-${pad2(d)}`;
     const weekday = new Date(y, m, d).getDay();
     const isSunday = weekday === 0;
-    const isScheduled = schedule.some(s => s.date === dateStr && s.type === '수업');
-    const isFriendly = schedule.some(s => s.date === dateStr && s.type === '경기');
+    const hasClass = getClassFlag(dateStr);
+    const hasMatch = getMatchFlag(dateStr);
     const isSelected = dateStr === selectedDate;
     const cls = ['cal-cell'];
     if(isSunday) cls.push('sunday');
-    if(isScheduled) cls.push('scheduled');
-    if(isFriendly) cls.push('friendly');
+    if(hasClass) cls.push('scheduled');
+    if(hasMatch) cls.push('has-match');
     if(isSelected) cls.push('selected');
-    const label = isScheduled ? '수업' : isFriendly ? '경기' : '';
+    const labelParts = [];
+    if(hasClass) labelParts.push('수업');
+    if(hasMatch) labelParts.push('경기');
+    const label = labelParts.join('·');
     cells += `<div class="${cls.join(' ')}" data-date="${dateStr}"><span class="cal-day-num">${d}</span>${label ? `<span class="cal-day-label">${label}</span>` : ''}</div>`;
   }
   document.getElementById('calGrid').innerHTML = cells;
@@ -603,19 +693,18 @@ function renderCalendar(){
     cell.addEventListener('click', () => selectDate(cell.dataset.date));
   });
 
-  const currentType = schedule.find(s => s.date === selectedDate);
-  document.getElementById('setClassBtn').classList.toggle('active', !!currentType && currentType.type === '수업');
-  document.getElementById('setMatchBtn').classList.toggle('active', !!currentType && currentType.type === '경기');
+  document.getElementById('setClassBtn').classList.toggle('active', getClassFlag(selectedDate));
+  document.getElementById('setMatchBtn').classList.toggle('active', getMatchFlag(selectedDate));
 }
 
 document.getElementById('setClassBtn').addEventListener('click', () => {
-  setScheduleType(document.getElementById('checkDate').value, '수업');
+  toggleClassFlag(document.getElementById('checkDate').value);
 });
 document.getElementById('setMatchBtn').addEventListener('click', () => {
-  setScheduleType(document.getElementById('checkDate').value, '경기');
+  toggleMatchFlag(document.getElementById('checkDate').value);
 });
 document.getElementById('clearTypeBtn').addEventListener('click', () => {
-  clearScheduleType(document.getElementById('checkDate').value);
+  resetScheduleDate(document.getElementById('checkDate').value);
 });
 
 document.getElementById('calPrev').addEventListener('click', () => {
@@ -635,6 +724,7 @@ function rowToMember(row){
   return {
     id: row.id, name: row.name, type: row.type,
     total: row.total, used: row.used, start: row.start,
+    backno: row.backno ?? null,
     dates: row.dates || []
   };
 }
@@ -656,6 +746,7 @@ async function loadRoster(){
 }
 
 async function upsertMember(m){
+  if(m.type !== 'monthly') m.used = computeUsed(m);
   const { error } = await sb.from('members').upsert(m);
   if(error) showToast('저장 실패: ' + error.message);
 }
@@ -685,9 +776,17 @@ function typeLabel(m){
   return `${m.type}회권`;
 }
 
+function computeUsed(m){
+  if(m.type === 'monthly') return null;
+  const cycleStart = getStartDate(m);
+  const cycleEnd = m.start; // 만료일
+  if(!cycleStart || !cycleEnd) return 0;
+  return m.dates.filter(d => d >= cycleStart && d <= cycleEnd && getClassFlag(d)).length;
+}
+
 function remainingLabel(m){
   if(m.type === 'monthly') return '횟수 X';
-  return `${m.total - m.used}/${m.total}`;
+  return `${m.total - computeUsed(m)}/${m.total}`;
 }
 
 function addDays(dateStr, days){
@@ -730,7 +829,7 @@ function memberStatus(m){
   const today = todayStr();
   const expiry = getExpiryDate(m);
   const periodExpired = !!expiry && expiry < today;
-  const depleted = m.type !== 'monthly' && (m.total - m.used) <= 0;
+  const depleted = m.type !== 'monthly' && (m.total - computeUsed(m)) <= 0;
   return { periodExpired, depleted, expiry, needsRenewal: periodExpired || depleted };
 }
 
@@ -741,63 +840,34 @@ function expireBadge(m){
   return `<span class="badge-expire" title="${reason}">갱신 필요</span>`;
 }
 
-let checkedIds = new Set();
-
-function renderRoll(){
-  const list = document.getElementById('rollList');
+function renderAttendeeSelect(){
+  const sel = document.getElementById('attendeeSelect');
+  const prevValue = sel.value;
   if(roster.length === 0){
-    list.innerHTML = '<div class="empty">등록된 팀원이 없습니다. 아래에서 등록해주세요.</div>';
-    updateSelCount();
+    sel.innerHTML = '<option value="">등록된 팀원이 없습니다</option>';
     return;
   }
-  list.innerHTML = roster.map(m => {
-    const remain = m.type === 'monthly' ? null : m.total - m.used;
-    const isChecked = checkedIds.has(m.id);
-    let remainClass = 'ok';
-    let remainText = remainingLabel(m);
-    if(m.type === 'monthly'){ remainClass = 'unlimited'; }
-    else if(remain <= 1){ remainClass = 'low'; }
-    return `
-      <div class="roll-row ${isChecked ? 'checked' : ''}" data-id="${m.id}">
-        <div class="chk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#12140a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <span class="roll-name">${m.name}</span>
-        <span class="roll-meta">${typeLabel(m)}</span>
-        ${expireBadge(m)}
-        <span class="roll-remain ${remainClass}">${remainText}</span>
-      </div>`;
+  sel.innerHTML = roster.map(m => {
+    const remain = m.type === 'monthly' ? null : m.total - computeUsed(m);
+    const depleted = remain !== null && remain <= 0;
+    const backnoLabel = m.backno != null ? m.backno : '-';
+    return `<option value="${m.id}" ${depleted ? 'disabled' : ''}>${m.name} / ${backnoLabel}${depleted ? ' (소진)' : ''}</option>`;
   }).join('');
-
-  list.querySelectorAll('.roll-row').forEach(row => {
-    row.addEventListener('click', () => {
-      const id = row.dataset.id;
-      const m = roster.find(x => x.id === id);
-      if(m.type !== 'monthly' && (m.total - m.used) <= 0 && !checkedIds.has(id)){
-        showToast(`${m.name}님은 잔여 횟수가 없습니다`);
-        return;
-      }
-      if(checkedIds.has(id)) checkedIds.delete(id);
-      else checkedIds.add(id);
-      renderRoll();
-    });
-  });
-  updateSelCount();
-}
-
-function updateSelCount(){
-  document.getElementById('selCount').textContent = `${checkedIds.size}명 선택됨`;
+  if(roster.some(m => m.id === prevValue)) sel.value = prevValue;
 }
 
 function renderRosterTable(){
   const body = document.getElementById('rosterBody');
   if(roster.length === 0){
-    body.innerHTML = '<tr><td colspan="5" class="empty">등록된 팀원이 없습니다</td></tr>';
+    body.innerHTML = '<tr><td colspan="6" class="empty">등록된 팀원이 없습니다</td></tr>';
     return;
   }
   body.innerHTML = roster.map(m => {
-    const pct = m.type === 'monthly' ? 100 : Math.max(0, ((m.total - m.used) / m.total) * 100);
-    const low = m.type !== 'monthly' && (m.total - m.used) <= 1;
+    const pct = m.type === 'monthly' ? 100 : Math.max(0, ((m.total - computeUsed(m)) / m.total) * 100);
+    const low = m.type !== 'monthly' && (m.total - computeUsed(m)) <= 1;
     return `
       <tr>
+        <td data-label="등번호">${m.backno != null ? `<span class="tag">#${m.backno}</span>` : '-'}</td>
         <td class="name-cell" data-label="이름">${m.name}</td>
         <td data-label="회원권"><span class="tag">${typeLabel(m)}</span></td>
         <td data-label="잔여">
@@ -814,6 +884,7 @@ function renderRosterTable(){
         </td>
         <td data-label="">
           <div class="row-actions">
+            <button class="icon-btn" data-action="edit" data-id="${m.id}" title="정보 수정">✏️</button>
             <button class="icon-btn" data-action="history" data-id="${m.id}" title="이력">📋</button>
             ${m.type !== 'monthly' ? `<button class="icon-btn" data-action="recharge" data-id="${m.id}" title="충전">＋</button>` : ''}
             <button class="icon-btn" data-action="delete" data-id="${m.id}" title="삭제">✕</button>
@@ -822,6 +893,9 @@ function renderRosterTable(){
       </tr>`;
   }).join('');
 
+  body.querySelectorAll('[data-action="edit"]').forEach(btn => {
+    btn.addEventListener('click', () => openEdit(btn.dataset.id));
+  });
   body.querySelectorAll('[data-action="history"]').forEach(btn => {
     btn.addEventListener('click', () => openHistory(btn.dataset.id));
   });
@@ -838,10 +912,10 @@ let rechargeTargetId = null;
 async function rechargeMember(id){
   const m = roster.find(x => x.id === id);
   if(!m) return;
-  const ok = await requireAdmin(`${m.name}님 회수권 충전`);
+  const ok = await requireAdmin(`${m.name}님 횟수권 충전`);
   if(!ok) return;
   rechargeTargetId = id;
-  document.getElementById('rechargeModalTitle').textContent = `${m.name}님 회수권 충전`;
+  document.getElementById('rechargeModalTitle').textContent = `${m.name}님 횟수권 충전`;
   document.querySelectorAll('#rechargeToggle button').forEach(b => b.classList.toggle('active', b.dataset.type === '8'));
   document.getElementById('rechargeModal').classList.add('open');
 }
@@ -864,7 +938,6 @@ document.getElementById('rechargeConfirm').addEventListener('click', async () =>
   const n = parseInt(activeBtn.dataset.type, 10);
   m.type = String(n);
   m.total = n;
-  m.used = 0;
   m.start = suggestedExpiry(String(n));
   await upsertMember(m);
   render();
@@ -879,34 +952,32 @@ async function deleteMember(id){
   if(!ok) return;
   await removeMemberRow(id);
   roster = roster.filter(x => x.id !== id);
-  checkedIds.delete(id);
   render();
   showToast(`${m.name}님이 삭제되었습니다`);
 }
 
-document.getElementById('saveAttendance').addEventListener('click', async () => {
-  if(checkedIds.size === 0){
-    showToast('선택된 인원이 없습니다');
+document.getElementById('checkInBtn').addEventListener('click', async () => {
+  const sel = document.getElementById('attendeeSelect');
+  const id = sel.value;
+  const m = roster.find(x => x.id === id);
+  if(!m){
+    showToast('선택된 사람이 없습니다');
     return;
   }
-  const date = document.getElementById('checkDate').value || todayStr();
-  const eventType = getEventType(date);
-  const isClass = eventType === '수업';
-  const updatedMembers = [];
-  checkedIds.forEach(id => {
-    const m = roster.find(x => x.id === id);
-    if(!m) return;
-    if(!m.dates.includes(date)) m.dates.push(date);
-    if(m.type !== 'monthly' && isClass) m.used += 1;
-    updatedMembers.push(m);
-  });
-  for(const m of updatedMembers){
-    await upsertMember(m);
+  const date = todayStr(); // 버튼 누른 시점의 실제 날짜
+  const isClass = getClassFlag(date);
+  const isMatch = getMatchFlag(date);
+  if(m.type !== 'monthly' && isClass && (m.total - computeUsed(m)) <= 0){
+    showToast(`${m.name}님은 잔여 횟수가 없습니다`);
+    return;
   }
-  const count = checkedIds.size;
-  checkedIds.clear();
+  if(!m.dates.includes(date)) m.dates.push(date);
+  await upsertMember(m); // used는 upsertMember 내부에서 자동 재계산됨
   render();
-  showToast(isClass ? `${count}명 출석 저장 완료` : `${count}명 출석 저장 완료 (경기 · 횟수 차감 없음)`);
+  let msg = `${m.name}님 출석 저장 완료`;
+  if(!isClass) msg += isMatch ? ' (경기 · 횟수 차감 없음)' : ' (일정 없음 · 횟수 차감 없음)';
+  else if(isMatch) msg += ' (수업+경기)';
+  showToast(msg);
 });
 
 // Add member modal
@@ -925,6 +996,7 @@ function updateExpiryPreview(){
 
 document.getElementById('openAdd').addEventListener('click', () => {
   document.getElementById('mName').value = '';
+  document.getElementById('mBackno').value = '';
   selectedType = '8';
   document.getElementById('mPurchase').value = todayStr();
   document.querySelectorAll('#typeToggle button').forEach(b => b.classList.toggle('active', b.dataset.type === '8'));
@@ -943,6 +1015,7 @@ document.querySelectorAll('#typeToggle button').forEach(btn => {
 document.getElementById('mPurchase').addEventListener('change', updateExpiryPreview);
 document.getElementById('confirmAdd').addEventListener('click', async () => {
   const name = document.getElementById('mName').value.trim();
+  const backnoVal = document.getElementById('mBackno').value;
   const purchase = document.getElementById('mPurchase').value || todayStr();
   const expiry = calcExpiryFromPurchase(purchase, selectedType);
   if(!name){
@@ -954,6 +1027,7 @@ document.getElementById('confirmAdd').addEventListener('click', async () => {
   const newMember = {
     id: Date.now().toString(),
     name,
+    backno: backnoVal ? parseInt(backnoVal, 10) : null,
     type: selectedType,
     total: selectedType === 'monthly' ? null : parseInt(selectedType, 10),
     used: selectedType === 'monthly' ? null : 0,
@@ -978,40 +1052,169 @@ function showToast(msg){
 function renderAttendeePanel(){
   const dateStr = document.getElementById('checkDate').value;
   const [y,m,d] = dateStr.split('-');
-  const eventType = getEventType(dateStr);
+  const hasClass = getClassFlag(dateStr);
+  const hasMatch = getMatchFlag(dateStr);
   document.getElementById('apDate').textContent = `${y.slice(2)}.${m}.${d} 참석자`;
   const typeEl = document.getElementById('apType');
-  typeEl.textContent = eventType;
-  typeEl.className = 'ap-type ' + (eventType === '수업' ? 'is-class' : 'is-match');
-  const names = roster.filter(mm => mm.dates.includes(dateStr)).map(mm => mm.name);
+  const labelParts = [];
+  if(hasClass) labelParts.push('수업');
+  if(hasMatch) labelParts.push('경기');
+  typeEl.textContent = labelParts.length ? labelParts.join(' + ') : '일정 없음';
+  typeEl.className = 'ap-type ' + (hasClass ? 'is-class' : 'is-match');
+  const attendees = roster.filter(mm => mm.dates.includes(dateStr));
   const chipsEl = document.getElementById('apChips');
-  chipsEl.innerHTML = names.length
-    ? names.map(n => `<span class="attendee-chip">${n}</span>`).join('')
+  chipsEl.innerHTML = attendees.length
+    ? attendees.map(mm => `<span class="attendee-chip">${mm.name} (${remainingLabel(mm)})</span>`).join('')
     : `<div class="attendee-empty">아직 출석 기록 없음</div>`;
 }
 
-function openHistory(id){
-  const m = roster.find(x => x.id === id);
-  if(!m) return;
+function renderTodayAttendeePanel(){
+  // 출석체크 탭의 참석자 리스트는 제거됨 (캘린더 탭에 이미 있음)
+  return;
+}
+
+let historyTargetId = null;
+
+function renderHistoryList(m){
   document.getElementById('historyTitle').textContent = `${m.name} 참석 이력 (총 ${m.dates.length}회)`;
   const sorted = [...m.dates].sort((a,b) => b.localeCompare(a));
   const listEl = document.getElementById('historyList');
   listEl.innerHTML = sorted.length
     ? sorted.map(dt => {
         const [y,mo,d] = dt.split('-');
-        return `<div class="history-item"><span>${y}.${mo}.${d}</span></div>`;
+        return `<div class="history-item"><span>${y}.${mo}.${d}</span><button class="icon-btn" data-remove-date="${dt}" style="width:26px;height:26px;font-size:12px;">✕</button></div>`;
       }).join('')
     : '<div class="history-empty">아직 참석 기록이 없습니다</div>';
+  listEl.querySelectorAll('[data-remove-date]').forEach(btn => {
+    btn.addEventListener('click', () => removeHistoryDate(m.id, btn.dataset.removeDate));
+  });
+}
+
+function openHistory(id){
+  const m = roster.find(x => x.id === id);
+  if(!m) return;
+  historyTargetId = id;
+  document.getElementById('historyAddDate').value = todayStr();
+  renderHistoryList(m);
   document.getElementById('historyModal').classList.add('open');
 }
+
+async function removeHistoryDate(id, dateStr){
+  const m = roster.find(x => x.id === id);
+  if(!m) return;
+  const ok = await requireAdmin(`${m.name}님 ${dateStr} 출석 기록 삭제`);
+  if(!ok) return;
+  m.dates = m.dates.filter(d => d !== dateStr);
+  await upsertMember(m);
+  render();
+  renderHistoryList(m);
+  showToast('출석 기록이 삭제되었습니다');
+}
+
+document.getElementById('historyAddBtn').addEventListener('click', async () => {
+  const m = roster.find(x => x.id === historyTargetId);
+  if(!m) return;
+  const dateVal = document.getElementById('historyAddDate').value;
+  if(!dateVal){
+    showToast('날짜를 선택해주세요');
+    return;
+  }
+  if(m.dates.includes(dateVal)){
+    showToast('이미 있는 날짜입니다');
+    return;
+  }
+  const ok = await requireAdmin(`${m.name}님 ${dateVal} 출석 기록 추가`);
+  if(!ok) return;
+  m.dates.push(dateVal);
+  await upsertMember(m);
+  render();
+  renderHistoryList(m);
+  showToast('출석 기록이 추가되었습니다');
+});
+
 document.getElementById('closeHistory').addEventListener('click', () => {
   document.getElementById('historyModal').classList.remove('open');
+  historyTargetId = null;
+});
+
+let editTargetId = null;
+let editSelectedType = '8';
+
+function toggleEditFieldsVisibility(){
+  const isMonthly = editSelectedType === 'monthly';
+  document.getElementById('editTotalField').style.display = isMonthly ? 'none' : 'block';
+  document.getElementById('editUsedField').style.display = isMonthly ? 'none' : 'block';
+}
+
+function openEdit(id){
+  const m = roster.find(x => x.id === id);
+  if(!m) return;
+  editTargetId = id;
+  editSelectedType = m.type;
+  document.getElementById('editName').value = m.name;
+  document.getElementById('editBackno').value = m.backno != null ? m.backno : '';
+  document.querySelectorAll('#editTypeToggle button').forEach(b => b.classList.toggle('active', b.dataset.type === m.type));
+  document.getElementById('editTotal').value = m.type === 'monthly' ? '' : m.total;
+  const usedNow = m.type === 'monthly' ? null : computeUsed(m);
+  document.getElementById('editUsedDisplay').textContent = m.type === 'monthly' ? '-' : `${usedNow}회 (참석 이력 기준 자동 계산됨)`;
+  document.getElementById('editExpiry').value = m.start;
+  toggleEditFieldsVisibility();
+  document.getElementById('editModal').classList.add('open');
+}
+
+document.querySelectorAll('#editTypeToggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    editSelectedType = btn.dataset.type;
+    document.querySelectorAll('#editTypeToggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    toggleEditFieldsVisibility();
+  });
+});
+
+document.getElementById('editCancel').addEventListener('click', () => {
+  document.getElementById('editModal').classList.remove('open');
+  editTargetId = null;
+});
+
+document.getElementById('editConfirm').addEventListener('click', async () => {
+  const m = roster.find(x => x.id === editTargetId);
+  document.getElementById('editModal').classList.remove('open');
+  if(!m){ editTargetId = null; return; }
+  const newName = document.getElementById('editName').value.trim();
+  if(!newName){
+    showToast('이름을 입력해주세요');
+    editTargetId = null;
+    return;
+  }
+  const ok = await requireAdmin(`${m.name}님 정보 수정`);
+  if(!ok){ editTargetId = null; return; }
+
+  const backnoVal = document.getElementById('editBackno').value;
+  const expiryVal = document.getElementById('editExpiry').value || m.start;
+
+  m.name = newName;
+  m.backno = backnoVal ? parseInt(backnoVal, 10) : null;
+  m.type = editSelectedType;
+  if(editSelectedType === 'monthly'){
+    m.total = null;
+    m.used = null;
+  }else{
+    const totalVal = parseInt(document.getElementById('editTotal').value, 10);
+    m.total = isNaN(totalVal) ? m.total : totalVal;
+  }
+  m.start = expiryVal;
+
+  await upsertMember(m); // used는 upsertMember 내부에서 자동 재계산됨
+  render();
+  showToast('정보가 수정되었습니다');
+  editTargetId = null;
 });
 
 function render(){
-  renderRoll();
+  renderAttendeeSelect();
   renderRosterTable();
   renderAttendeePanel();
+  renderTodayAttendeePanel();
 }
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
