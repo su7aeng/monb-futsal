@@ -161,27 +161,60 @@
   .cal-dow{text-align:center;font-size:11px;color:var(--text-dim);font-weight:600;padding-bottom:6px;}
   .cal-dow.sun{color:var(--accent);}
   .cal-cell{
-    aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+    aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
     position:relative;border-radius:9px;font-size:13px;font-weight:600;
     background:var(--surface-2);border:1px solid transparent;cursor:pointer;color:var(--text);
     transition:border-color .15s;
   }
+  .cal-day-num{line-height:1;}
+  .cal-day-label{font-size:9px;font-weight:700;line-height:1;opacity:.85;letter-spacing:-.02em;}
   .cal-cell.empty{background:transparent;cursor:default;}
   .cal-cell.sunday{border:1px dashed #3d4227;}
   .cal-cell.scheduled{background:var(--accent);color:#12140a;border-color:var(--accent);}
-  .cal-cell.selected:not(.scheduled){border-color:var(--accent);}
+  .cal-cell.friendly{background:transparent;border:2px solid var(--accent);color:var(--accent);}
+  .cal-cell.selected:not(.scheduled):not(.friendly){border-color:var(--accent);}
   .cal-cell:hover:not(.empty){border-color:#4a4f53;}
   .cal-hint{font-size:12px;color:var(--text-dim);margin-top:12px;text-align:center;}
+  .cal-legend{display:flex;gap:14px;justify-content:center;margin-top:10px;flex-wrap:wrap;}
+  .cal-legend span{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim);}
+  .cal-legend .dot{width:10px;height:10px;border-radius:3px;}
+  .cal-legend .dot.class{background:var(--accent);}
+  .cal-legend .dot.friendly{background:transparent;border:2px solid var(--accent);}
+
+  .type-select{display:flex;gap:8px;margin-top:14px;}
+  .type-select button{
+    flex:1;padding:10px;border-radius:9px;border:1px solid var(--border);background:var(--surface-2);
+    color:var(--text-dim);font-family:'Sora';font-weight:700;font-size:13px;cursor:pointer;
+    transition:all .15s;
+  }
+  .type-select button.is-class.active{background:var(--accent);color:#12140a;border-color:var(--accent);}
+  .type-select button.is-match.active{background:transparent;color:var(--accent);border:2px solid var(--accent);}
+  .type-select button.is-clear:hover{color:var(--danger);border-color:#4a2b2b;}
 
   .attendee-panel{
-    margin-top:14px;padding-top:14px;border-top:1px solid var(--border);
-  }
-  .attendee-panel .ap-title{font-size:12px;color:var(--text-dim);font-weight:600;margin-bottom:8px;}
-  .attendee-chips{display:flex;flex-wrap:wrap;gap:6px;}
-  .attendee-chip{
-    font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;
+    margin-top:16px;padding:14px 16px;border-radius:10px;
     background:var(--surface-2);border:1px solid var(--border);
   }
+  .attendee-panel .ap-title{
+    display:flex;align-items:center;gap:8px;
+    font-size:15px;color:var(--text);font-weight:700;font-family:'Sora';margin-bottom:10px;
+  }
+  .ap-date{color:var(--text);}
+  .ap-type{
+    font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;
+  }
+  .ap-type.is-class{background:var(--accent);color:#12140a;}
+  .ap-type.is-match{background:transparent;color:var(--accent);border:1.5px solid var(--accent);}
+  .attendee-chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .attendee-chip{
+    font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;
+    background:var(--surface);border:1px solid var(--border);
+  }
+  .attendee-empty{
+    display:flex;align-items:center;gap:8px;
+    font-size:13px;color:var(--text-dim);padding:8px 0;
+  }
+  .attendee-empty::before{content:'👀';font-size:14px;}
   .history-list{max-height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;}
   .history-item{
     display:flex;justify-content:space-between;font-size:13px;
@@ -196,7 +229,17 @@
     white-space:nowrap;
   }
   .badge-expire::before{content:'●';font-size:7px;}
-  @media (max-width: 640px){
+
+  .tabs{display:flex;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:5px;margin-bottom:22px;}
+  .tab-btn{
+    flex:1;background:transparent;border:none;color:var(--text-dim);
+    font-family:'Sora';font-weight:700;font-size:13px;padding:10px 16px;border-radius:999px;
+    cursor:pointer;transition:all .15s;
+  }
+  .tab-btn.active{background:var(--accent);color:#12140a;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+@media (max-width: 640px){
   .wrap{padding:18px 14px 70px;}
   header{flex-direction:column;align-items:flex-start;gap:14px;}
   header h1{font-size:21px;}
@@ -232,6 +275,7 @@
 
   .cal-grid{gap:4px;}
   .cal-cell{font-size:12px;}
+  .cal-day-label{font-size:7px;}
   .cal-title{min-width:70px;font-size:14px;}
 
   .modal{max-width:100%;}
@@ -246,49 +290,64 @@
       <h1>몬비 출석 &amp; 회수권 관리</h1>
       <p class="sub">출석 체크하면 회수권이 자동으로 차감됩니다</p>
     </div>
-    <div class="datebar">
-      <span style="font-size:13px;color:var(--text-dim);">📅</span>
-      <input type="date" id="checkDate">
-    </div>
   </header>
+  <input type="date" id="checkDate" style="display:none;">
 
-  <div class="card">
-    <div class="cal-head">
-      <h2 style="margin:0;">수업 일정</h2>
-      <div class="cal-nav">
-        <button class="icon-btn" id="calPrev">‹</button>
-        <span class="cal-title" id="calTitle"></span>
-        <button class="icon-btn" id="calNext">›</button>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="attend">출석체크</button>
+    <button class="tab-btn" data-tab="roster">팀원 명단</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-attend">
+    <div class="card">
+      <div class="cal-head">
+        <h2 style="margin:0;">몬비 캘린더</h2>
+        <div class="cal-nav">
+          <button class="icon-btn" id="calPrev">‹</button>
+          <span class="cal-title" id="calTitle"></span>
+          <button class="icon-btn" id="calNext">›</button>
+        </div>
+      </div>
+      <div class="cal-grid" id="calDow"></div>
+      <div class="cal-grid" id="calGrid" style="margin-top:6px;"></div>
+      <p class="cal-hint">날짜를 선택하고 아래 버튼으로 수업/경기를 지정하세요. 수업만 회수권이 차감돼요.</p>
+      <div class="cal-legend">
+        <span><span class="dot class"></span>수업 (횟수 차감)</span>
+        <span><span class="dot friendly"></span>경기 (차감 없음)</span>
+      </div>
+      <div class="type-select">
+        <button class="is-class" id="setClassBtn" type="button">🟢 수업</button>
+        <button class="is-match" id="setMatchBtn" type="button">⚪ 경기</button>
+        <button class="is-clear" id="clearTypeBtn" type="button">일정 해제</button>
+      </div>
+      <div class="attendee-panel">
+        <p class="ap-title"><span class="ap-date" id="apDate">참석자</span><span class="ap-type" id="apType"></span></p>
+        <div class="attendee-chips" id="apChips"></div>
       </div>
     </div>
-    <div class="cal-grid" id="calDow"></div>
-    <div class="cal-grid" id="calGrid" style="margin-top:6px;"></div>
-    <p class="cal-hint">날짜를 클릭하면 수업일로 지정되고, 아래 출석 체크 날짜도 그 날로 바뀌어요</p>
-    <div class="attendee-panel">
-      <p class="ap-title" id="apTitle">참석자</p>
-      <div class="attendee-chips" id="apChips"></div>
+
+    <div class="card">
+      <h2>오늘 출석 체크</h2>
+      <div class="roll" id="rollList"></div>
+      <div class="actions-row">
+        <span class="save-hint" id="selCount">0명 선택됨</span>
+        <button class="btn" id="saveAttendance">출석 저장 · 회수권 차감</button>
+      </div>
     </div>
   </div>
 
-  <div class="card">
-    <h2>오늘 출석 체크</h2>
-    <div class="roll" id="rollList"></div>
-    <div class="actions-row">
-      <span class="save-hint" id="selCount">0명 선택됨</span>
-      <button class="btn" id="saveAttendance">출석 저장 · 회수권 차감</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>팀원 명단</h2>
-    <table>
-      <thead>
-        <tr><th>이름</th><th>회원권</th><th>잔여</th><th>사용 기간</th><th></th></tr>
-      </thead>
-      <tbody id="rosterBody"></tbody>
-    </table>
-    <div class="footer-add">
-      <button class="btn ghost small" id="openAdd">+ 팀원 등록</button>
+  <div class="tab-panel" id="tab-roster">
+    <div class="card">
+      <h2>팀원 명단</h2>
+      <table>
+        <thead>
+          <tr><th>이름</th><th>회원권</th><th>잔여</th><th>사용 기간</th><th></th></tr>
+        </thead>
+        <tbody id="rosterBody"></tbody>
+      </table>
+      <div class="footer-add">
+        <button class="btn ghost small" id="openAdd">+ 팀원 등록</button>
+      </div>
     </div>
   </div>
 </div>
@@ -337,6 +396,26 @@ const SUPABASE_URL = 'https://choamjptmpkimtoxiyjf.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNob2FtanB0bXBraW10b3hpeWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM4MzkyNDgsImV4cCI6MjA5OTQxNTI0OH0.Ej-lEZsUb5UtLuoVynltPg34i7KMnVTuC6k2Ni-YIxM';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+const ADMIN_PASSWORD = 'monb2026^^!';
+
+async function logAdminAction(action, success){
+  try{
+    await sb.from('admin_log').insert({ action, success });
+  }catch(e){ /* 로그 실패는 조용히 무시 */ }
+}
+
+async function requireAdmin(actionLabel){
+  const pw = prompt(`관리자 비밀번호 입력\n(${actionLabel})`);
+  if(pw === null) return false;
+  if(pw !== ADMIN_PASSWORD){
+    showToast('비밀번호가 틀렸습니다');
+    await logAdminAction(actionLabel, false);
+    return false;
+  }
+  await logAdminAction(actionLabel, true);
+  return true;
+}
+
 const todayStr = () => new Date().toISOString().slice(0,10);
 
 const seed = [
@@ -356,24 +435,60 @@ let calMonth = new Date();
 calMonth.setDate(1);
 
 async function loadSchedule(){
-  const { data, error } = await sb.from('schedule').select('game_date');
+  const { data, error } = await sb.from('schedule').select('game_date, event_type');
   if(error){
+    showToast('일정 불러오기 실패: ' + error.message);
     schedule = [];
     return;
   }
-  schedule = data.map(r => r.game_date);
+  schedule = data.map(r => ({ date: r.game_date, type: r.event_type || '수업' }));
 }
 
-async function toggleScheduleDate(dateStr){
-  if(schedule.includes(dateStr)){
-    await sb.from('schedule').delete().eq('game_date', dateStr);
-  }else{
-    await sb.from('schedule').insert({ game_date: dateStr });
+async function setScheduleType(dateStr, type){
+  const entry = schedule.find(s => s.date === dateStr);
+  if(entry) entry.type = type; else schedule.push({ date: dateStr, type });
+  renderCalendar();
+  renderAttendeePanel();
+  try{
+    if(!entry){
+      const { error } = await sb.from('schedule').insert({ game_date: dateStr, event_type: type });
+      if(error) throw error;
+    }else{
+      const { error } = await sb.from('schedule').update({ event_type: type }).eq('game_date', dateStr);
+      if(error) throw error;
+    }
+    await loadSchedule();
+    renderCalendar();
+    renderAttendeePanel();
+  }catch(e){
+    showToast('일정 저장 실패: ' + e.message);
   }
-  await loadSchedule();
+}
+
+async function clearScheduleType(dateStr){
+  schedule = schedule.filter(s => s.date !== dateStr);
+  renderCalendar();
+  renderAttendeePanel();
+  try{
+    const { error } = await sb.from('schedule').delete().eq('game_date', dateStr);
+    if(error) throw error;
+    await loadSchedule();
+    renderCalendar();
+    renderAttendeePanel();
+  }catch(e){
+    showToast('일정 해제 실패: ' + e.message);
+  }
+}
+
+function selectDate(dateStr){
   document.getElementById('checkDate').value = dateStr;
   renderCalendar();
   renderAttendeePanel();
+}
+
+function getEventType(dateStr){
+  const entry = schedule.find(s => s.date === dateStr);
+  return entry ? entry.type : '수업';
 }
 
 function subscribeScheduleRealtime(){
@@ -408,20 +523,37 @@ function renderCalendar(){
     const dateStr = `${y}-${pad2(m+1)}-${pad2(d)}`;
     const weekday = new Date(y, m, d).getDay();
     const isSunday = weekday === 0;
-    const isScheduled = schedule.includes(dateStr);
+    const isScheduled = schedule.some(s => s.date === dateStr && s.type === '수업');
+    const isFriendly = schedule.some(s => s.date === dateStr && s.type === '경기');
     const isSelected = dateStr === selectedDate;
     const cls = ['cal-cell'];
     if(isSunday) cls.push('sunday');
     if(isScheduled) cls.push('scheduled');
+    if(isFriendly) cls.push('friendly');
     if(isSelected) cls.push('selected');
-    cells += `<div class="${cls.join(' ')}" data-date="${dateStr}">${d}</div>`;
+    const label = isScheduled ? '수업' : isFriendly ? '경기' : '';
+    cells += `<div class="${cls.join(' ')}" data-date="${dateStr}"><span class="cal-day-num">${d}</span>${label ? `<span class="cal-day-label">${label}</span>` : ''}</div>`;
   }
   document.getElementById('calGrid').innerHTML = cells;
 
   document.querySelectorAll('#calGrid .cal-cell:not(.empty)').forEach(cell => {
-    cell.addEventListener('click', () => toggleScheduleDate(cell.dataset.date));
+    cell.addEventListener('click', () => selectDate(cell.dataset.date));
   });
+
+  const currentType = schedule.find(s => s.date === selectedDate);
+  document.getElementById('setClassBtn').classList.toggle('active', !!currentType && currentType.type === '수업');
+  document.getElementById('setMatchBtn').classList.toggle('active', !!currentType && currentType.type === '경기');
 }
+
+document.getElementById('setClassBtn').addEventListener('click', () => {
+  setScheduleType(document.getElementById('checkDate').value, '수업');
+});
+document.getElementById('setMatchBtn').addEventListener('click', () => {
+  setScheduleType(document.getElementById('checkDate').value, '경기');
+});
+document.getElementById('clearTypeBtn').addEventListener('click', () => {
+  clearScheduleType(document.getElementById('checkDate').value);
+});
 
 document.getElementById('calPrev').addEventListener('click', () => {
   calMonth.setMonth(calMonth.getMonth() - 1);
@@ -604,6 +736,8 @@ function renderRosterTable(){
 async function rechargeMember(id){
   const m = roster.find(x => x.id === id);
   if(!m) return;
+  const ok = await requireAdmin(`${m.name}님 회수권 충전`);
+  if(!ok) return;
   const newTotal = prompt(`${m.name}님 새 회수권 횟수를 입력하세요 (예: 4 또는 8)`, m.type);
   if(newTotal === null) return;
   const n = parseInt(newTotal, 10);
@@ -623,6 +757,8 @@ async function rechargeMember(id){
 async function deleteMember(id){
   const m = roster.find(x => x.id === id);
   if(!m) return;
+  const ok = await requireAdmin(`${m.name}님 명단에서 삭제`);
+  if(!ok) return;
   if(!confirm(`${m.name}님을 명단에서 삭제할까요?`)) return;
   await removeMemberRow(id);
   roster = roster.filter(x => x.id !== id);
@@ -636,12 +772,14 @@ document.getElementById('saveAttendance').addEventListener('click', async () => 
     return;
   }
   const date = document.getElementById('checkDate').value || todayStr();
+  const eventType = getEventType(date);
+  const isClass = eventType === '수업';
   const updatedMembers = [];
   checkedIds.forEach(id => {
     const m = roster.find(x => x.id === id);
     if(!m) return;
     if(!m.dates.includes(date)) m.dates.push(date);
-    if(m.type !== 'monthly') m.used += 1;
+    if(m.type !== 'monthly' && isClass) m.used += 1;
     updatedMembers.push(m);
   });
   for(const m of updatedMembers){
@@ -650,7 +788,7 @@ document.getElementById('saveAttendance').addEventListener('click', async () => 
   const count = checkedIds.size;
   checkedIds.clear();
   render();
-  showToast(`${count}명 출석 저장 완료`);
+  showToast(isClass ? `${count}명 출석 저장 완료` : `${count}명 출석 저장 완료 (경기 · 횟수 차감 없음)`);
 });
 
 // Add member modal
@@ -677,6 +815,8 @@ document.getElementById('confirmAdd').addEventListener('click', async () => {
     showToast('이름을 입력해주세요');
     return;
   }
+  const ok = await requireAdmin(`${name}님 팀원 등록`);
+  if(!ok) return;
   const newMember = {
     id: Date.now().toString(),
     name,
@@ -704,12 +844,16 @@ function showToast(msg){
 function renderAttendeePanel(){
   const dateStr = document.getElementById('checkDate').value;
   const [y,m,d] = dateStr.split('-');
-  document.getElementById('apTitle').textContent = `${y.slice(2)}.${m}.${d} 참석자`;
+  const eventType = getEventType(dateStr);
+  document.getElementById('apDate').textContent = `${y.slice(2)}.${m}.${d} 참석자`;
+  const typeEl = document.getElementById('apType');
+  typeEl.textContent = eventType;
+  typeEl.className = 'ap-type ' + (eventType === '수업' ? 'is-class' : 'is-match');
   const names = roster.filter(mm => mm.dates.includes(dateStr)).map(mm => mm.name);
   const chipsEl = document.getElementById('apChips');
   chipsEl.innerHTML = names.length
     ? names.map(n => `<span class="attendee-chip">${n}</span>`).join('')
-    : `<span class="history-empty" style="padding:0;">아직 출석 기록 없음</span>`;
+    : `<div class="attendee-empty">아직 출석 기록 없음</div>`;
 }
 
 function openHistory(id){
@@ -735,6 +879,15 @@ function render(){
   renderRosterTable();
   renderAttendeePanel();
 }
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+  });
+});
 
 (async function init(){
   document.getElementById('checkDate').value = todayStr();
